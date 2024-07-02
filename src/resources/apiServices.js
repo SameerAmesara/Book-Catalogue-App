@@ -3,7 +3,7 @@ import axios from "axios";
 export const uploadImage = async (request) => {
   try {
     const response = await axios.post(
-      "https://n07mkml7eb.execute-api.us-east-1.amazonaws.com/prod/upload",
+      "https://k7qm4jenl3.execute-api.us-east-1.amazonaws.com/prod/upload",
       { ...request }
     );
 
@@ -18,7 +18,7 @@ export const deleteBook = async (request) => {
   console.log(request);
   try {
     const response = await axios.delete(
-      "https://n2gkowx0ff.execute-api.us-east-1.amazonaws.com/prod/deletebook",
+      "https://cbxp77o39h.execute-api.us-east-1.amazonaws.com/prod/deletebook",
       { data: { ...request } }
     );
 
@@ -33,7 +33,7 @@ export const deleteBook = async (request) => {
 export const getBooks = async () => {
   try {
     const response = await axios.get(
-      "https://aatdx1spmf.execute-api.us-east-1.amazonaws.com/prod/fetch-all"
+      "https://8kbhaf2y18.execute-api.us-east-1.amazonaws.com/prod/fetch-all"
     );
 
     const data = JSON.parse(response.data?.body ?? null);
@@ -46,7 +46,7 @@ export const getBooks = async () => {
 export const addBook = async (request) => {
   try {
     const response = await axios.post(
-      "https://fg1i4bm456.execute-api.us-east-1.amazonaws.com/prod/addbook",
+      "https://ehg4aypev0.execute-api.us-east-1.amazonaws.com/prod/addbook",
       { ...request }
     );
 
