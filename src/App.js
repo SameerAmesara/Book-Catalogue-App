@@ -1,29 +1,36 @@
-import { Container } from "@mui/material";
-import CssBaseline from "@mui/material/CssBaseline";
-import Box from "@mui/material/Box";
-import Library from "./pages/Library";
-import AddBook from "./pages/AddBook";
-import { useState } from "react";
+import { ThemeProvider } from '@mui/material';
+import CssBaseline from '@mui/material/CssBaseline';
+import theme from './theme';
+import { Routes, Route } from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
+import RegistrationPage from './pages/RegistrationPage';
+import NavPages from './pages/NavPages';
+import BooksPage from './pages/BooksPage';
+import AddBook from './pages/AddBook';
+import UpdateBook from './pages/UpdateBook';
+import ProfilePage from './pages/ProfilePage';
+import { AuthProvider } from './context/AuthContext';
+import BookDetails from './pages/BookDetails';
 
-function App() {
-  const [tab, setTab] = useState("library");
-
-  const updateTab = (tab) => {
-    setTab(tab);
-  };
-
+const App = () => {
   return (
-    <Box sx={{ display: "flex" }}>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container component="main" sx={{ paddingY: 3 }}>
-        {tab === "addBook" ? (
-          <AddBook updateTab={updateTab} />
-        ) : (
-          <Library updateTab={updateTab} />
-        )}
-      </Container>
-    </Box>
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/register" element={<RegistrationPage />} />
+          <Route path="/" element={<NavPages />}>
+            <Route path="home" element={<BooksPage />} />
+            <Route path="addBook" element={<AddBook />} />
+            <Route path="updateBook/:title" element={<UpdateBook />} />
+            <Route path="bookDetails/:title" element={<BookDetails />} />
+            <Route path="profile" element={<ProfilePage />} />
+          </Route>
+        </Routes>
+      </AuthProvider>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
