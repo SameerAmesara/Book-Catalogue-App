@@ -9,12 +9,15 @@ COPY package*.json ./
  
 # Install npm dependencies
 RUN npm install --legacy-peer-deps
+RUN npm install -g serve
  
 # Copy the remaining application code to the working directory
 COPY . .
  
 # Expose the port the app runs on
 EXPOSE 3000
- 
+
+RUN npm run build  
+
 # Define the command to run the app with --host option
-CMD ["npm", "start", "--", "--host"]
+CMD ["serve", "-s", "build"]
